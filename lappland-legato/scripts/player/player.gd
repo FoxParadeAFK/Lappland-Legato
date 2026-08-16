@@ -4,6 +4,7 @@ var current_state: State
 var idle_state: IdleState
 var move_state: MoveState
 var in_air_state: InAirState
+var jump_state: JumpState
 func transition_state(_transitioning_state: State) -> void:
 	if current_state != null: current_state.exit()
 	
@@ -16,17 +17,20 @@ func get_state(_state_path: NodePath, _animation_name: String) -> State:
 	if state != null: state.engage(self, _animation_name)
 	
 	return state
-enum {HORIZONTAL_VELOCITY = 100, GRAVITY = 650}
+enum {HORIZONTAL_VELOCITY = 100, VERTICAL_VELOCITY = 140, GRAVITY = 650}
 var horizontal_input: float
+var vertical_input: bool
 
 func _ready() -> void:
 	idle_state = get_state("FiniteStateMachine/IdleState", "idle")
 	move_state = get_state("FiniteStateMachine/MoveState", "move")
 	in_air_state = get_state("FiniteStateMachine/InAirState", "in air")
+	jump_state = get_state("FiniteStateMachine/JumpState", "jump")
 	transition_state(idle_state)
 
 func _physics_process(_delta: float) -> void:
 	horizontal_input = Input.get_axis("ui_left", "ui_right")
+	vertical_input = Input.is_action_just_pressed("ui_accept")
 	current_state.physics_update(_delta)
 	
 	move_and_slide()
