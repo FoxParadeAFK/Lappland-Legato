@@ -40,3 +40,8 @@ shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=854861843]
 zoom = Vector2(5, 5)
+
+[node name="VerticalInputBufferTimer" type="Timer" parent="." unique_id=600157346]
+process_callback = 0
+wait_time = 0.1
+one_shot = true

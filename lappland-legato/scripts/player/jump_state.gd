@@ -6,6 +6,8 @@ func enter() -> void:
 	has_jumped = false
 	
 	player.velocity.y = -player.VERTICAL_VELOCITY
+	player.vertical_input = false
+	player.vertical_input_buffer_timer.stop()
 	
 	has_jumped = true
 
