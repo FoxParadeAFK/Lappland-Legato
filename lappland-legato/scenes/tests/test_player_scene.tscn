@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://k7s586ocx4m4"]
+
+[ext_resource type="PackedScene" uid="uid://b8di8lne7p373" path="res://scenes/player.tscn" id="1_qb0p4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qb0p4"]
+size = Vector2(32, 16)
+
+[node name="TestPlayerScene" type="Node2D" unique_id=609067781]
+
+[node name="Ground" type="Node2D" parent="." unique_id=993625286]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground" unique_id=886998431]
+position = Vector2(-32, 4)
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground/StaticBody2D" unique_id=879368320]
+polygon = PackedVector2Array(-16, -8, 16, -8, 16, 8, -16, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D" unique_id=1416570158]
+shape = SubResource("RectangleShape2D_qb0p4")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Ground" unique_id=320177687]
+position = Vector2(0, 12)
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground/StaticBody2D2" unique_id=1611915458]
+polygon = PackedVector2Array(-16, -8, 16, -8, 16, 8, -16, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D2" unique_id=1914459019]
+shape = SubResource("RectangleShape2D_qb0p4")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Ground" unique_id=1946179980]
+position = Vector2(32, -4)
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground/StaticBody2D3" unique_id=1595856849]
+polygon = PackedVector2Array(-16, -8, 16, -8, 16, 8, -16, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D3" unique_id=1363751188]
+shape = SubResource("RectangleShape2D_qb0p4")
+
+[node name="Player" parent="." unique_id=1374821560 instance=ExtResource("1_qb0p4")]
