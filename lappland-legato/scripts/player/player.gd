@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 var current_state: State
 var idle_state: IdleState
 var move_state: MoveState
+var in_air_state: InAirState
 func transition_state(_transitioning_state: State) -> void:
 	if current_state != null: current_state.exit()
 	
@@ -21,6 +22,7 @@ var horizontal_input: float
 func _ready() -> void:
 	idle_state = get_state("FiniteStateMachine/IdleState", "idle")
 	move_state = get_state("FiniteStateMachine/MoveState", "move")
+	in_air_state = get_state("FiniteStateMachine/InAirState", "in air")
 	transition_state(idle_state)
 
 func _physics_process(_delta: float) -> void:

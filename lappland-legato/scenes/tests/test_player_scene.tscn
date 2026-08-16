@@ -37,3 +37,4 @@ polygon = PackedVector2Array(-16, -8, 16, -8, 16, 8, -16, 8)
 shape = SubResource("RectangleShape2D_qb0p4")
 
 [node name="Player" parent="." unique_id=1374821560 instance=ExtResource("1_qb0p4")]
+position = Vector2(0, -48)
