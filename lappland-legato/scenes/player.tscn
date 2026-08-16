@@ -45,3 +45,8 @@ zoom = Vector2(5, 5)
 process_callback = 0
 wait_time = 0.1
 one_shot = true
+
+[node name="VerticalInputReleasedBufferTimer" type="Timer" parent="." unique_id=850769526]
+process_callback = 0
+wait_time = 0.15
+one_shot = true
