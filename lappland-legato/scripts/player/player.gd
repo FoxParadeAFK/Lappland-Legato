@@ -16,7 +16,7 @@ func get_state(_state_path: NodePath, _animation_name: String) -> State:
 	if state != null: state.engage(self, _animation_name)
 	
 	return state
-	
+enum {HORIZONTAL_VELOCITY = 100, GRAVITY = 650}
 var horizontal_input: float
 
 func _ready() -> void:
