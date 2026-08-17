@@ -4,10 +4,8 @@ func enter() -> void: pass
 
 func physics_update(_delta: float) -> void:
 	var gravity: float = player.GRAVITY
-	if sign(player.velocity.y) == -1 and player.vertical_input_released:
-		player.velocity.y *= 0.6
-		player.vertical_input_released = false
-		player.vertical_input_released_buffer_timer.stop()
+	if sign(player.velocity.y) == -1 and not player.vertical_input_held:
+		player.velocity.y *= 0.8
 	if sign(player.velocity.y) == -1 and player.velocity.y >= -45:
 		gravity *= 0.35
 	

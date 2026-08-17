@@ -23,10 +23,9 @@ enum {JUMP_COUNT =  1}
 var jump_count: int
 var horizontal_input: float
 var vertical_input: bool
-var vertical_input_released: bool
+var vertical_input_held: bool
 
 var vertical_input_buffer_timer: Timer
-var vertical_input_released_buffer_timer: Timer
 var coyote_timer: Timer
 
 func _ready() -> void:
@@ -38,30 +37,24 @@ func _ready() -> void:
 	
 	vertical_input_buffer_timer = get_node_or_null("VerticalInputBufferTimer")
 	vertical_input_buffer_timer.timeout.connect(func() -> void: vertical_input = false)
-	vertical_input_released_buffer_timer = get_node_or_null("VerticalInputReleasedBufferTimer")
-	vertical_input_released_buffer_timer.timeout.connect(func() -> void: vertical_input_released = false)
 	coyote_timer = get_node_or_null("CoyoteTimer")
 	coyote_timer.timeout.connect(func() -> void: jump_count -= 1)
 
 func _physics_process(_delta: float) -> void:
+	print(vertical_input)
 	horizontal_input = Input.get_axis("ui_left", "ui_right")
-	vertical_input_buffer(Input.is_action_just_pressed("ui_accept"))
-	vertical_input_released_buffer(Input.is_action_just_released("ui_accept"))
+	vertical_input = input_buffer(Input.is_action_just_pressed("ui_accept"), vertical_input_buffer_timer)
+	vertical_input_held = Input.is_action_pressed("ui_accept")
 	current_state.physics_update(_delta)
 	
 	move_and_slide()
 
-func vertical_input_buffer(_vertical_input: bool) -> void:
-	if not _vertical_input or vertical_input_buffer_timer.time_left != 0: return
+func input_buffer(_input: bool, _timer: Timer) -> bool:
+	if not _input and _timer.time_left == 0: return false
+	if _timer.time_left != 0: return true
 	
-	vertical_input = true
-	vertical_input_buffer_timer.start()
-	
-func vertical_input_released_buffer(_vertical_input_released: bool) -> void:
-	if not _vertical_input_released or vertical_input_released_buffer_timer.time_left != 0: return
-	
-	vertical_input_released = true
-	vertical_input_released_buffer_timer.start()
+	_timer.start()
+	return true
 
 func reset_jump_count() -> void:
 	jump_count = JUMP_COUNT
