@@ -15,6 +15,8 @@ func physics_update(_delta: float) -> void:
 	player.velocity.y += gravity * _delta
 	
 	if player.is_on_floor() and player.horizontal_input == 0: player.transition_state(player.idle_state)
+	elif player.vertical_input and player.should_jump(): player.transition_state(player.jump_state)
 	elif player.is_on_floor() and player.horizontal_input != 0: player.transition_state(player.move_state)
 
-func exit() -> void: pass
+func exit() -> void:
+	player.coyote_timer.stop()
