@@ -41,7 +41,6 @@ func _ready() -> void:
 	coyote_timer.timeout.connect(func() -> void: jump_count -= 1)
 
 func _physics_process(_delta: float) -> void:
-	print(vertical_input)
 	horizontal_input = Input.get_axis("ui_left", "ui_right")
 	vertical_input = input_buffer(Input.is_action_just_pressed("ui_accept"), vertical_input_buffer_timer)
 	vertical_input_held = Input.is_action_pressed("ui_accept")
