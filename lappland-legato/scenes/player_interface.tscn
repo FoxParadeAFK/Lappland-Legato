@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://nvvamxapixkn"]
+
+[node name="PlayerInterface" type="Control" unique_id=1471102962]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1534823317]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 140.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueLabel" type="Label" parent="CenterContainer" unique_id=498944488]
+layout_mode = 2

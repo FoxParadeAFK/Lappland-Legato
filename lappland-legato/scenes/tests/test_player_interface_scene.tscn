@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://csn35sxx2siyx"]
+
+[ext_resource type="Script" uid="uid://cgayf0oc2bdvb" path="res://scripts/test/test_dialogue.gd" id="1_evx6i"]
+[ext_resource type="Script" uid="uid://bsbk4kmh1i0qi" path="res://scripts/interactions/interaction.gd" id="2_tlfwc"]
+[ext_resource type="Script" uid="uid://bvi6kntn8reot" path="res://scripts/interactions/dialogue_interaction.gd" id="3_1o513"]
+[ext_resource type="Script" uid="uid://gdy3uvtrhv6x" path="res://scripts/interactions/manuscript.gd" id="4_wgf5t"]
+
+[sub_resource type="Resource" id="Resource_5fgf4"]
+script = ExtResource("3_1o513")
+lines = Array[String](["Hello there", "This is really intersting"])
+metadata/_custom_type_script = "uid://bvi6kntn8reot"
+
+[sub_resource type="Resource" id="Resource_tlfwc"]
+script = ExtResource("3_1o513")
+lines = Array[String](["Like really..."])
+metadata/_custom_type_script = "uid://bvi6kntn8reot"
+
+[sub_resource type="Resource" id="Resource_xbq4i"]
+script = ExtResource("4_wgf5t")
+manuscript = Array[ExtResource("2_tlfwc")]([SubResource("Resource_5fgf4"), SubResource("Resource_tlfwc")])
+metadata/_custom_type_script = "uid://gdy3uvtrhv6x"
+
+[node name="TestInterfaceScene" type="Node2D" unique_id=1305732155]
+script = ExtResource("1_evx6i")
+manuscript = SubResource("Resource_xbq4i")
