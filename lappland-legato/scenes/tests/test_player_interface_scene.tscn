@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsbk4kmh1i0qi" path="res://scripts/interactions/interaction.gd" id="2_tlfwc"]
 [ext_resource type="Script" uid="uid://bvi6kntn8reot" path="res://scripts/interactions/dialogue_interaction.gd" id="3_1o513"]
 [ext_resource type="Script" uid="uid://gdy3uvtrhv6x" path="res://scripts/interactions/manuscript.gd" id="4_wgf5t"]
+[ext_resource type="PackedScene" uid="uid://nvvamxapixkn" path="res://scenes/player_interface.tscn" id="5_1o513"]
 
 [sub_resource type="Resource" id="Resource_5fgf4"]
 script = ExtResource("3_1o513")
@@ -23,3 +24,9 @@ metadata/_custom_type_script = "uid://gdy3uvtrhv6x"
 [node name="TestInterfaceScene" type="Node2D" unique_id=1305732155]
 script = ExtResource("1_evx6i")
 manuscript = SubResource("Resource_xbq4i")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2050545279]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2131598912]
+
+[node name="PlayerInterface" parent="CanvasLayer" unique_id=1471102962 instance=ExtResource("5_1o513")]

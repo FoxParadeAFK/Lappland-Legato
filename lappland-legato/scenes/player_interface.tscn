@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://nvvamxapixkn"]
 
+[ext_resource type="Script" uid="uid://ddp6sdip4ui44" path="res://scripts/interface/dialogue_label.gd" id="1_fljvu"]
+
 [node name="PlayerInterface" type="Control" unique_id=1471102962]
 layout_mode = 3
 anchors_preset = 15
@@ -21,3 +23,4 @@ grow_vertical = 2
 
 [node name="DialogueLabel" type="Label" parent="CenterContainer" unique_id=498944488]
 layout_mode = 2
+script = ExtResource("1_fljvu")
