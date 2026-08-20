@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://b8di8lne7p373"]
 
-[ext_resource type="Texture2D" uid="uid://bfb6up35ex2qc" path="res://icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://cwa6yonmgfp8l" path="res://scripts/player/idle_state.gd" id="1_g2els"]
 [ext_resource type="Script" uid="uid://de4rdjxux7a4l" path="res://scripts/player/player.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://dw7a62b0iws4u" path="res://scripts/player/move_state.gd" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://bie5yf1xs8qig" path="res://scripts/player/in_air_state.gd" id="4_qlg0r"]
 [ext_resource type="Script" uid="uid://bcbreom0268qj" path="res://scripts/player/jump_state.gd" id="5_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://dp1rhok43qcli" path="res://sprites/player.png" id="6_tuyoq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
-size = Vector2(8, 8)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
+radius = 3.0
+height = 10.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1374821560]
 script = ExtResource("1_qhqgy")
@@ -32,11 +33,13 @@ script = ExtResource("5_tuyoq")
 metadata/_custom_type_script = "uid://bcbreom0268qj"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2004009879]
-scale = Vector2(0.0625, 0.0625)
-texture = ExtResource("1_3vyb7")
+position = Vector2(3, -4)
+texture = ExtResource("6_tuyoq")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1613619257]
-shape = SubResource("RectangleShape2D_3vyb7")
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_fjrip")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=854861843]
 zoom = Vector2(5, 5)

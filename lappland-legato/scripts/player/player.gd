@@ -18,7 +18,7 @@ func get_state(_state_path: NodePath, _animation_name: String) -> State:
 	
 	return state
 	
-enum {HORIZONTAL_VELOCITY = 100, VERTICAL_VELOCITY = 140, GRAVITY = 650}
+enum {HORIZONTAL_VELOCITY = 80, VERTICAL_VELOCITY = 120, GRAVITY = 650}
 enum {JUMP_COUNT =  1}
 var jump_count: int
 var horizontal_input: float
@@ -27,6 +27,8 @@ var vertical_input_held: bool
 
 var vertical_input_buffer_timer: Timer
 var coyote_timer: Timer
+
+var facing_direction: int
 
 func _ready() -> void:
 	idle_state = get_state("FiniteStateMachine/IdleState", "idle")
@@ -39,6 +41,8 @@ func _ready() -> void:
 	vertical_input_buffer_timer.timeout.connect(func() -> void: vertical_input = false)
 	coyote_timer = get_node_or_null("CoyoteTimer")
 	coyote_timer.timeout.connect(func() -> void: jump_count -= 1)
+	
+	facing_direction = 1
 
 func _physics_process(_delta: float) -> void:
 	horizontal_input = Input.get_axis("ui_left", "ui_right")
@@ -46,6 +50,7 @@ func _physics_process(_delta: float) -> void:
 	vertical_input_held = Input.is_action_pressed("ui_accept")
 	current_state.physics_update(_delta)
 	
+	flip()
 	move_and_slide()
 
 func input_buffer(_input: bool, _timer: Timer) -> bool:
@@ -60,3 +65,9 @@ func reset_jump_count() -> void:
 
 func should_jump() -> bool:
 	return jump_count > 0
+	
+func flip() -> void:
+	if horizontal_input != 0 and horizontal_input != facing_direction:
+		facing_direction *= -1
+		scale.y = 1 if facing_direction == 1 else -1
+		rotation_degrees = 0 if facing_direction == 1 else 180
