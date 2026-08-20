@@ -8,8 +8,9 @@ var jump_state: JumpState
 func transition_state(_transitioning_state: State) -> void:
 	if current_state != null: current_state.exit()
 	
-	print("Time: %5s State: %s" % [Time.get_ticks_msec(), _transitioning_state.animation_name])
 	current_state = _transitioning_state
+	print("Time: %5s State: %s" % [Time.get_ticks_msec(), current_state.animation_name])
+	animation_tree.set("parameters/Transition/transition_request", current_state.animation_name)
 	current_state.enter()
 
 func get_state(_state_path: NodePath, _animation_name: String) -> State:
@@ -25,12 +26,16 @@ var horizontal_input: float
 var vertical_input: bool
 var vertical_input_held: bool
 
+var animation_tree: AnimationTree
 var vertical_input_buffer_timer: Timer
 var coyote_timer: Timer
 
 var facing_direction: int
 
 func _ready() -> void:
+	facing_direction = 1
+	animation_tree = get_node_or_null("AnimationTree")
+	
 	idle_state = get_state("FiniteStateMachine/IdleState", "idle")
 	move_state = get_state("FiniteStateMachine/MoveState", "move")
 	in_air_state = get_state("FiniteStateMachine/InAirState", "in air")
@@ -42,7 +47,6 @@ func _ready() -> void:
 	coyote_timer = get_node_or_null("CoyoteTimer")
 	coyote_timer.timeout.connect(func() -> void: jump_count -= 1)
 	
-	facing_direction = 1
 
 func _physics_process(_delta: float) -> void:
 	horizontal_input = Input.get_axis("ui_left", "ui_right")

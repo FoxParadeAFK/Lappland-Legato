@@ -11,6 +11,63 @@
 radius = 3.0
 height = 10.0
 
+[sub_resource type="Animation" id="Animation_tuyoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fjrip"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smehm"]
+_data = {
+&"RESET": SubResource("Animation_tuyoq"),
+&"idle": SubResource("Animation_fjrip")
+}
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_tuyoq"]
+input_0/name = "idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjrip"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xvqry"]
+graph_offset = Vector2(-304.85147, 75)
+nodes/output/position = Vector2(330, 200)
+nodes/Transition/node = SubResource("AnimationNodeTransition_tuyoq")
+nodes/Transition/position = Vector2(190, 200)
+nodes/idle/node = SubResource("AnimationNodeAnimation_fjrip")
+nodes/idle/position = Vector2(30, 90)
+node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"idle"]
+
 [node name="Player" type="CharacterBody2D" unique_id=1374821560]
 script = ExtResource("1_qhqgy")
 
@@ -53,3 +110,13 @@ one_shot = true
 process_callback = 0
 wait_time = 0.1
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1905357712]
+libraries/ = SubResource("AnimationLibrary_smehm")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=478595079]
+tree_root = SubResource("AnimationNodeBlendTree_xvqry")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Transition/current_state = "idle"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
