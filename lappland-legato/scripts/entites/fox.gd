@@ -2,6 +2,7 @@ class_name Fox extends CharacterBody2D
 
 var current_state: FoxState
 var idle_state: FoxIdleState
+var move_state: FoxMoveState
 func transition_state(_transitioning_state: FoxState) -> void:
 	if current_state != null: current_state.exit()
 	
@@ -14,11 +15,28 @@ func get_state(_state_path: NodePath, _animation_name: String) -> FoxState:
 	if state != null: state.engage(self, _animation_name)
 	
 	return state
-
+ 
 var facing_direction: int
+@onready var ground_ray_cast: RayCast2D = $"RayCast/GroundRayCast"
+@onready var upper_wall_ray_cast: RayCast2D = $"RayCast/UpperWallRayCast"
+@onready var mid_wall_ray_cast: RayCast2D = $"RayCast/MidWallRayCast"
+@onready var lower_wall_ray_cast: RayCast2D = $"RayCast/LowerWallRayCast"
 
 func _ready() -> void:
 	facing_direction = 1
 	
 	idle_state = get_state("FiniteStateMachine/FoxIdleState", "idle")
-	transition_state(idle_state)
+	move_state = get_state("FiniteStateMachine/FoxMoveState", "move")
+	transition_state(move_state)
+	
+func _physics_process(_delta: float) -> void:
+	current_state.physics_update(_delta)
+	
+	move_and_slide()
+	flip()
+
+func flip() -> void:
+	if not ground_ray_cast.is_colliding() or mid_wall_ray_cast.is_colliding():
+		facing_direction *= -1
+		scale.y = 1 if facing_direction == 1 else -1
+		rotation_degrees = 0 if facing_direction == 1 else 180

@@ -1,10 +1,10 @@
-class_name FoxIdleState extends FoxState
+class_name FoxMoveState extends FoxState
 
 func enter() -> void:
-	fox.velocity.x = 0
+	pass
 	
 func physics_update(_delta: float) -> void:
-	pass
+	fox.velocity.x = fox.facing_direction * 10
 	
 func exit() -> void:
 	pass
