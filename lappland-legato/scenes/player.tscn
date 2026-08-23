@@ -99,7 +99,7 @@ position = Vector2(-1, -1)
 shape = SubResource("CapsuleShape2D_fjrip")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=854861843]
-zoom = Vector2(5, 5)
+zoom = Vector2(4.5, 4.5)
 
 [node name="VerticalInputBufferTimer" type="Timer" parent="." unique_id=600157346]
 process_callback = 0

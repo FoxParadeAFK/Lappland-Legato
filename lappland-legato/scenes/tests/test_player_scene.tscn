@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8di8lne7p373" path="res://scenes/player.tscn" id="1_qb0p4"]
 [ext_resource type="TileSet" uid="uid://cpssfre8kmt0t" path="res://sprites/tileset.tres" id="1_rb1be"]
+[ext_resource type="PackedScene" uid="uid://cjkyhquay0fgk" path="res://scenes/fox.tscn" id="3_rb1be"]
 
 [node name="TestPlayerScene" type="Node2D" unique_id=609067781]
 
@@ -16,3 +17,6 @@ tile_map_data = PackedByteArray("AAD5/wAAAAAAAAMAAFD5/wEAAAADAAMAAFD6/wEAAAAAAAM
 tile_set = ExtResource("1_rb1be")
 
 [node name="Player" parent="." unique_id=1374821560 instance=ExtResource("1_qb0p4")]
+
+[node name="Fox" parent="." unique_id=528390626 instance=ExtResource("3_rb1be")]
+position = Vector2(28, 12)

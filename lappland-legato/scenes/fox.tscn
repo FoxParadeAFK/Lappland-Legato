@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cjkyhquay0fgk"]
+
+[ext_resource type="Script" uid="uid://dji5nwa8o4oy3" path="res://scripts/entites/fox.gd" id="1_ufccv"]
+[ext_resource type="Script" uid="uid://da4fdidlv5a31" path="res://scripts/entites/fox_idle_state.gd" id="2_3u0el"]
+[ext_resource type="Texture2D" uid="uid://bfb6up35ex2qc" path="res://icon.svg" id="2_35nom"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufccv"]
+size = Vector2(8, 8)
+
+[node name="Fox" type="CharacterBody2D" unique_id=528390626]
+script = ExtResource("1_ufccv")
+
+[node name="FiniteStateMachine" type="Node2D" parent="." unique_id=1686202851]
+
+[node name="FoxIdleState" type="Node2D" parent="FiniteStateMachine" unique_id=429338536]
+script = ExtResource("2_3u0el")
+metadata/_custom_type_script = "uid://da4fdidlv5a31"
+
+[node name="RayCast" type="Node2D" parent="." unique_id=1620815607]
+position = Vector2(6, 4)
+
+[node name="GroundCast" type="RayCast2D" parent="RayCast" unique_id=1218666479]
+target_position = Vector2(0, 10)
+
+[node name="LowerWallCast" type="RayCast2D" parent="RayCast" unique_id=816590658]
+position = Vector2(0, -4)
+target_position = Vector2(14, 0)
+
+[node name="UpperWallCast" type="RayCast2D" parent="RayCast" unique_id=966967252]
+position = Vector2(0, -12)
+target_position = Vector2(14, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1570143416]
+scale = Vector2(0.062499996, 0.062499996)
+texture = ExtResource("2_35nom")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1032882951]
+shape = SubResource("RectangleShape2D_ufccv")
