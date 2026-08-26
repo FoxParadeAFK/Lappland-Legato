@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bfb6up35ex2qc" path="res://icon.svg" id="2_35nom"]
 [ext_resource type="Script" uid="uid://dww7lb14dpjwd" path="res://scripts/entites/fox_move_state.gd" id="3_3u0el"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufccv"]
-size = Vector2(8, 8)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3u0el"]
+radius = 4.0
+height = 8.0
 
 [node name="Fox" type="CharacterBody2D" unique_id=528390626]
 collision_layer = 2
@@ -27,30 +28,34 @@ metadata/_custom_type_script = "uid://dww7lb14dpjwd"
 position = Vector2(4, 4)
 
 [node name="GroundRayCast" type="RayCast2D" parent="RayCast" unique_id=1218666479]
-target_position = Vector2(0, 10)
+target_position = Vector2(0, 6)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="LowerWallRayCast" type="RayCast2D" parent="RayCast" unique_id=816590658]
 position = Vector2(0, -1)
 target_position = Vector2(14, 0)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="MidWallRayCast" type="RayCast2D" parent="RayCast" unique_id=1181877842]
 position = Vector2(0, -5)
 target_position = Vector2(4, 0)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="UpperWallRayCast" type="RayCast2D" parent="RayCast" unique_id=966967252]
 position = Vector2(0, -9)
 target_position = Vector2(14, 0)
 collision_mask = 4
+hit_from_inside = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1570143416]
 scale = Vector2(0.062499996, 0.062499996)
 texture = ExtResource("2_35nom")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1032882951]
-shape = SubResource("RectangleShape2D_ufccv")
+shape = SubResource("CapsuleShape2D_3u0el")
 
 [node name="IdleStateTimer" type="Timer" parent="." unique_id=1609429913]
 process_callback = 0

@@ -39,8 +39,6 @@ func _physics_process(_delta: float) -> void:
 	flip()
 
 func flip() -> void:
-	print(mid_wall_ray_cast.get_collider())
-	
 	if not ground_ray_cast.is_colliding() or mid_wall_ray_cast.is_colliding():
 		facing_direction *= -1
 		scale.y = 1 if facing_direction == 1 else -1
