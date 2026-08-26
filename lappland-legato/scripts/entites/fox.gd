@@ -22,6 +22,9 @@ var facing_direction: int
 @onready var mid_wall_ray_cast: RayCast2D = $"RayCast/MidWallRayCast"
 @onready var lower_wall_ray_cast: RayCast2D = $"RayCast/LowerWallRayCast"
 
+@onready var idle_state_timer: Timer = $"IdleStateTimer"
+@onready var move_state_timer: Timer = $"MoveStateTimer"
+
 func _ready() -> void:
 	facing_direction = 1
 	
@@ -36,6 +39,8 @@ func _physics_process(_delta: float) -> void:
 	flip()
 
 func flip() -> void:
+	print(mid_wall_ray_cast.get_collider())
+	
 	if not ground_ray_cast.is_colliding() or mid_wall_ray_cast.is_colliding():
 		facing_direction *= -1
 		scale.y = 1 if facing_direction == 1 else -1

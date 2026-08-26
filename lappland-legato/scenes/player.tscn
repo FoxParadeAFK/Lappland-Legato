@@ -69,6 +69,7 @@ nodes/idle/position = Vector2(30, 90)
 node_connections = [&"output", 0, &"Transition", &"Transition", 0, &"idle"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1374821560]
+collision_mask = 4
 script = ExtResource("1_qhqgy")
 
 [node name="FiniteStateMachine" type="Node2D" parent="." unique_id=85494512]
