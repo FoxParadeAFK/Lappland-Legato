@@ -8,8 +8,7 @@ func enter() -> void:
 	fox.idle_state_timer.start(randf_range(IDLE_DURATION_MIN, IDLE_DURATION_MAX))
 	
 func physics_update(_delta: float) -> void:
-	if fox.idle_state_timer.time_left == 0:
-		fox.transition_state(fox.move_state)
+	if fox.idle_state_timer.time_left == 0: fox.transition_state(fox.move_state)
 	
 func exit() -> void:
 	pass

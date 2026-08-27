@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Lappland Legato"
-run/main_scene="uid://k7s586ocx4m4"
+run/main_scene="uid://bvjc73wbufuo5"
 config/features=PackedStringArray("4.8", "GL Compatibility")
 config/icon="res://icon.svg"
 

@@ -28,6 +28,9 @@ var facing_direction: int
 @onready var idle_state_timer: Timer = $"IdleStateTimer"
 @onready var move_state_timer: Timer = $"MoveStateTimer"
 
+enum {GRAVITY = 650, HORIZONTAL_VELOCITY = 15}
+enum {LEAPING_HORIZONTAL_VELOCITY = 70, LEAPING_VERTICAL_VELOCITY = 90}
+
 func _ready() -> void:
 	facing_direction = 1
 	
