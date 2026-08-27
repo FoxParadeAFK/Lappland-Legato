@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://da4fdidlv5a31" path="res://scripts/entites/fox_idle_state.gd" id="2_3u0el"]
 [ext_resource type="Texture2D" uid="uid://bfb6up35ex2qc" path="res://icon.svg" id="2_35nom"]
 [ext_resource type="Script" uid="uid://dww7lb14dpjwd" path="res://scripts/entites/fox_move_state.gd" id="3_3u0el"]
+[ext_resource type="Script" uid="uid://dktpindvah2cc" path="res://scripts/entites/fox_in_air_state.gd" id="4_2g4xt"]
+[ext_resource type="Script" uid="uid://dcuyt2wv6ghdu" path="res://scripts/entites/fox_leap_state.gd" id="5_m5q2l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3u0el"]
 radius = 4.0
@@ -24,16 +26,24 @@ metadata/_custom_type_script = "uid://da4fdidlv5a31"
 script = ExtResource("3_3u0el")
 metadata/_custom_type_script = "uid://dww7lb14dpjwd"
 
+[node name="FoxInAirState" type="Node2D" parent="FiniteStateMachine" unique_id=217709900]
+script = ExtResource("4_2g4xt")
+metadata/_custom_type_script = "uid://dktpindvah2cc"
+
+[node name="FoxLeapState" type="Node2D" parent="FiniteStateMachine" unique_id=372159119]
+script = ExtResource("5_m5q2l")
+metadata/_custom_type_script = "uid://dcuyt2wv6ghdu"
+
 [node name="RayCast" type="Node2D" parent="." unique_id=1620815607]
 position = Vector2(4, 4)
 
 [node name="GroundRayCast" type="RayCast2D" parent="RayCast" unique_id=1218666479]
-target_position = Vector2(0, 6)
+target_position = Vector2(0, 3)
 collision_mask = 4
 hit_from_inside = true
 
 [node name="LowerWallRayCast" type="RayCast2D" parent="RayCast" unique_id=816590658]
-position = Vector2(0, -1)
+position = Vector2(0, -4)
 target_position = Vector2(14, 0)
 collision_mask = 4
 hit_from_inside = true

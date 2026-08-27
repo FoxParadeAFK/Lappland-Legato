@@ -3,6 +3,8 @@ class_name Fox extends CharacterBody2D
 var current_state: FoxState
 var idle_state: FoxIdleState
 var move_state: FoxMoveState
+var in_air_state: FoxInAirState
+var leap_state: FoxLeapState
 func transition_state(_transitioning_state: FoxState) -> void:
 	if current_state != null: current_state.exit()
 	
@@ -30,6 +32,8 @@ func _ready() -> void:
 	
 	idle_state = get_state("FiniteStateMachine/FoxIdleState", "idle")
 	move_state = get_state("FiniteStateMachine/FoxMoveState", "move")
+	in_air_state = get_state("FiniteStateMachine/FoxInAirState", "in air")
+	leap_state = get_state("FiniteStateMachine/FoxLeapState", "leap")
 	transition_state(move_state)
 	
 func _physics_process(_delta: float) -> void:
@@ -39,7 +43,7 @@ func _physics_process(_delta: float) -> void:
 	flip()
 
 func flip() -> void:
-	if not ground_ray_cast.is_colliding() or mid_wall_ray_cast.is_colliding():
+	if is_on_floor() and not ground_ray_cast.is_colliding() or mid_wall_ray_cast.is_colliding():
 		facing_direction *= -1
 		scale.y = 1 if facing_direction == 1 else -1
 		rotation_degrees = 0 if facing_direction == 1 else 180
