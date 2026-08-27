@@ -19,7 +19,8 @@ func get_state(_state_path: NodePath, _animation_name: String) -> FoxState:
 	return state
  
 var facing_direction: int
-@onready var ground_ray_cast: RayCast2D = $"RayCast/GroundRayCast"
+@onready var front_ground_ray_cast: RayCast2D = $"RayCast/FrontGroundRayCast"
+@onready var back_ground_ray_cast: RayCast2D = $"RayCast/BackGroundRayCast"
 @onready var upper_wall_ray_cast: RayCast2D = $"RayCast/UpperWallRayCast"
 @onready var mid_wall_ray_cast: RayCast2D = $"RayCast/MidWallRayCast"
 @onready var lower_wall_ray_cast: RayCast2D = $"RayCast/LowerWallRayCast"
@@ -43,7 +44,10 @@ func _physics_process(_delta: float) -> void:
 	flip()
 
 func flip() -> void:
-	if is_on_floor() and not ground_ray_cast.is_colliding() or mid_wall_ray_cast.is_colliding():
+	var front: bool = front_ground_ray_cast.is_colliding()
+	var mid: bool = mid_wall_ray_cast.is_colliding()
+	
+	if is_on_floor() and (front != mid) and not front or mid:
 		facing_direction *= -1
 		scale.y = 1 if facing_direction == 1 else -1
 		rotation_degrees = 0 if facing_direction == 1 else 180

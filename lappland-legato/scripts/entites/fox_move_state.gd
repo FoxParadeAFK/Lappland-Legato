@@ -1,7 +1,7 @@
 class_name FoxMoveState extends FoxState
 
-const MOVE_DURATION_MIN: float = 0.75
-const MOVE_DURATION_MAX: float = 3.75
+const MOVE_DURATION_MIN: float = 1.00
+const MOVE_DURATION_MAX: float = 2.00
 
 var should_jump: bool
 var wants_to_jump: bool
@@ -23,6 +23,8 @@ func physics_update(_delta: float) -> void:
 		fox.transition_state(fox.leap_state)
 	elif fox.move_state_timer.time_left == 0:
 		fox.transition_state(fox.idle_state)
+	elif not fox.is_on_floor():
+		fox.transition_state(fox.in_air_state)
 	
 func exit() -> void:
 	pass

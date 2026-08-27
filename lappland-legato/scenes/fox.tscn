@@ -37,7 +37,13 @@ metadata/_custom_type_script = "uid://dcuyt2wv6ghdu"
 [node name="RayCast" type="Node2D" parent="." unique_id=1620815607]
 position = Vector2(4, 4)
 
-[node name="GroundRayCast" type="RayCast2D" parent="RayCast" unique_id=1218666479]
+[node name="FrontGroundRayCast" type="RayCast2D" parent="RayCast" unique_id=1218666479]
+target_position = Vector2(0, 3)
+collision_mask = 4
+hit_from_inside = true
+
+[node name="BackGroundRayCast" type="RayCast2D" parent="RayCast" unique_id=63532719]
+position = Vector2(-8, 0)
 target_position = Vector2(0, 3)
 collision_mask = 4
 hit_from_inside = true
